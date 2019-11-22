@@ -29,7 +29,6 @@ class Top extends React.Component {
           new Date("03/21/2021")
         ];
         var graduation = new Date("06/15/2023");
-        console.log(today);
         var rawDays = Math.trunc(
           (graduation.getTime() - today) / (1000 * 3600 * 24)
         );
@@ -52,15 +51,12 @@ class Top extends React.Component {
         //15 79*5/7
         schoolDays = Math.trunc(schoolDays);
         var percentage = (100 - (schoolDays / 796) * 100).toFixed(2);
-
-        console.log(schoolDays);
         var dates = {
           today: today,
           schoolDays: schoolDays,
           rawDays: rawDays,
           percentage: percentage
         };
-        console.log(dates);
         resolve(dates);
       });
     };
