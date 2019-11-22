@@ -15,10 +15,9 @@ class SceneAlt extends Component {
     const height = this.mount.clientHeight;
     //scene set up
     const scene = new THREE.Scene();
-    const circle = new THREE.Object3D();
     const skelet = new THREE.Object3D();
     const particle = new THREE.Object3D();
-    scene.add(circle);
+
     scene.add(skelet);
     scene.add(particle);
     ///////////////////////////////////
@@ -83,7 +82,7 @@ class SceneAlt extends Component {
     ///////////////////////////////////
 
     //light shit
-    var ambientLight = new THREE.AmbientLight(0x888888);
+    var ambientLight = new THREE.AmbientLight(0xffffff);
     scene.add(ambientLight); //adding to scene
 
     var lights = [];
@@ -100,7 +99,7 @@ class SceneAlt extends Component {
 
     camera.position.z = 400;
 
-    renderer.setClearColor("#3D62FB");
+    renderer.setClearColor("#FF8585");
     // renderer.setPixelRatio(window.devicePixelRatio);
 
     this.scene = scene;
@@ -109,7 +108,7 @@ class SceneAlt extends Component {
     this.renderer = renderer;
     this.material = material;
     this.skelet = skelet;
-    this.circle = circle;
+
     this.particle = particle;
     this.mount.appendChild(this.renderer.domElement);
     this.start();
@@ -146,12 +145,10 @@ class SceneAlt extends Component {
     }
   }
   animate() {
-    this.particle.rotation.x += 0.0;
-    this.particle.rotation.y -= 0.004;
-    this.circle.rotation.x -= 0.002;
-    this.circle.rotation.y -= 0.003;
-    this.skelet.rotation.x -= 0.001;
-    this.skelet.rotation.y += 0.002;
+    this.particle.rotation.z += 0.004;
+
+    this.skelet.rotation.x -= 0.0005;
+    this.skelet.rotation.z -= 0.002;
     var tanFOV = Math.tan(((Math.PI / 180) * this.camera.fov) / 2);
     var windowHeight = window.innerHeight;
     this.camera.aspect = window.innerWidth / window.innerHeight;

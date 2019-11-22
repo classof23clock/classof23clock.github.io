@@ -24,7 +24,9 @@ p {
   height: 100vh;
 }
 .row {
-  width: 100%;
+  margin-left: 20%;
+  margin-right: 20%;
+  width: 60%;
   display: inline-flex;
 }
 .bottomRow {
@@ -61,11 +63,23 @@ p {
   z-index: -15;
   /* background: #91f7a9; */
   /* background: -webkit-linear-gradient(to bottom, #c6fed3, #91f7a9);
+ 
   background: linear-gradient(to bottom, #c6fed3, #91f7a9); */
 }
-.bi {
-  width: 50%;
+
+.numP {
+  font-size: 40px;
+  color: white;
+}
+.tileP {
+  padding: 0px;
+  font-size: 15px;
+  color: white;
+}
+.tri {
+  width: 33%;
   height: 100%;
+  flex-direction: column;
   background: transparent;
 }
 .centerH {
@@ -92,7 +106,7 @@ p {
   .lCol {
     margin-top: 40%;
   }
-  .bi {
+  .tri {
     width: 100%;
     height: 25%;
   }

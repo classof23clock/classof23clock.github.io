@@ -1,30 +1,78 @@
 import React from "react";
-import "./Form.css";
-import axios from "axios";
-import titleImg from "../img/title.png";
+import titleImg from "../imgs/title.png";
 
-import TweetLayout from "./TweetLayout";
 import Scene from "./ThreeRenderAlt.js";
 class Top extends React.Component {
-  state = { markov: "enter username", username: "" };
+  state = { rawDays: "", today: "", schoolDays: "", percentage: "" };
 
-  handleFormSubmit = event => {
-    this.setState({ markov: "loading..." });
-    // event.preventDefault();
-    const handle = event.target.elements.handle.value;
-    this.setState({ username: handle });
-    event.preventDefault();
-    return axios
-      .post("/gen/", {
-        title: handle
-      })
-      .then(response => {
-        this.setState({ markov: response.data });
-      })
-      .catch(response => {
-        this.setState({ markov: "not a valid username" });
+  componentDidMount() {
+    let getInfo = function() {
+      return new Promise(function(resolve, reject) {
+        var today = Date.now();
+        // var todayTest = new Date("10/01/2019");
+
+        var summers = [
+          new Date("06/13/2020"),
+          new Date("06/13/2021"),
+          new Date("06/13/2022")
+        ];
+        var winters = [
+          new Date("12/14/2019"),
+          new Date("12/14/2020"),
+          new Date("12/14/2021"),
+          new Date("12/14/2021")
+        ];
+        var springs = [
+          new Date("03/21/2019"),
+          new Date("03/21/2020"),
+          new Date("03/21/2021"),
+          new Date("03/21/2021")
+        ];
+        var graduation = new Date("06/15/2023");
+        console.log(today);
+        var rawDays = Math.trunc(
+          (graduation.getTime() - today) / (1000 * 3600 * 24)
+        );
+
+        var schoolDays = rawDays * (5 / 7);
+        for (var i = 3; i >= 0; i--) {
+          if (today < springs[i].getTime()) {
+            schoolDays = schoolDays - 5;
+            if (today < winters[i].getTime()) {
+              schoolDays = schoolDays - 15;
+              if (i < 3 && today < summers[i].getTime()) {
+                schoolDays = schoolDays - 55;
+              }
+
+              console.log("summer DETECTED");
+            }
+          }
+        }
+        //796 total amount of school days as calculated above.
+        //15 79*5/7
+        schoolDays = Math.trunc(schoolDays);
+        var percentage = (100 - (schoolDays / 796) * 100).toFixed(2);
+
+        console.log(schoolDays);
+        var dates = {
+          today: today,
+          schoolDays: schoolDays,
+          rawDays: rawDays,
+          percentage: percentage
+        };
+        console.log(dates);
+        resolve(dates);
       });
-  };
+    };
+    getInfo().then(data => {
+      return this.setState({
+        rawDays: data.rawDays,
+        today: data.today,
+        schoolDays: data.schoolDays,
+        percentage: data.percentage
+      });
+    });
+  }
 
   render() {
     return (
@@ -34,27 +82,17 @@ class Top extends React.Component {
         </div>
         <img className="titleImg" src={titleImg} alt="titleImg" />
         <div className="row fullHeight">
-          <div className="lCol bi centerH centerV">
-            <form
-              onSubmit={event => this.handleFormSubmit(event)}
-              className="form'"
-            >
-              <label className="at">
-                <b>@</b>
-              </label>
-              <input
-                name="handle"
-                placeholder="Enter a Username"
-                className="input"
-              />
-              <button className="button">Generate</button>
-            </form>
+          <div className=" tri centerH centerV">
+            <p className="numP">{this.state.rawDays}</p>
+            <p className="tileP">DAYS LEFT (RAW)</p>
           </div>
-          <div className="rCol bi centerH centerV">
-            <TweetLayout
-              data={this.state.markov}
-              username={this.state.username}
-            />
+          <div className=" tri centerH centerV">
+            <p className="numP">{this.state.schoolDays}</p>
+            <p className="tileP">SCHOOL DAYS LEFT</p>
+          </div>
+          <div className="lCol tri centerH centerV">
+            <p className="numP">{this.state.percentage}%</p>
+            <p className="tileP">PERCENTAGE COMPLETE</p>
           </div>
         </div>
         <div className="bottomRow centerH">
@@ -66,9 +104,6 @@ class Top extends React.Component {
           </a>
           <a href="https://github.com/simonmahns/TweetGenerator">
             <p className="bottomText hover">[code]</p>
-          </a>
-          <a href="https://en.wikipedia.org/wiki/Markov_property">
-            <p className="bottomText hover">[what is the markov property]</p>
           </a>
         </div>
       </div>
