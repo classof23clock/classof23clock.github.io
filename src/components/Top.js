@@ -38,9 +38,9 @@ class Top extends React.Component {
           if (today < springs[i].getTime()) {
             schoolDays = schoolDays - 5;
             if (today < winters[i].getTime()) {
-              schoolDays = schoolDays - 15;
+              schoolDays = schoolDays - 17;
               if (i < 3 && today < summers[i].getTime()) {
-                schoolDays = schoolDays - 55;
+                schoolDays = schoolDays - 58;
               }
 
               console.log("summer DETECTED");
