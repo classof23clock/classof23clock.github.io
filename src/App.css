@@ -1,22 +1,120 @@
-.App {
-  text-align: center;
+@viewport {
+  width: device-width;
+  zoom: 1;
 }
-
-.App-logo {
-  height: 40vmin;
+@import url("https://fonts.googleapis.com/css?family=Roboto:300&display=swap");
+@-ms-viewport {
+  width: device-width;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+canvas {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  z-index: -10;
+}
+a {
+  text-decoration: none;
+}
+p {
+  margin: 0px;
+  padding-top: 6px;
+  padding-bottom: 11px;
+}
+.fullHeight {
+  height: 100vh;
+}
+.row {
+  width: 100%;
+  display: inline-flex;
+}
+.bottomRow {
+  z-index: 400;
+  height: 20px;
+  background: transparent;
+  position: fixed;
+  margin-top: -40px;
+  width: 100%;
+  display: inline-flex;
+}
+.bottomText {
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
   color: white;
+  padding: 5px;
+}
+.titleImg {
+  position: absolute;
+  left: 50%;
+  margin-left: -315px;
+  width: 600px;
+  z-index: 5;
+  margin-top: 9vh;
+}
+.at {
+  color: white;
+  font-size: 20px;
+  padding-right: 2px;
+}
+.genDiv {
+  /* margin-top: -100vh; */
+  background: transparent;
+  z-index: -15;
+  /* background: #91f7a9; */
+  /* background: -webkit-linear-gradient(to bottom, #c6fed3, #91f7a9);
+  background: linear-gradient(to bottom, #c6fed3, #91f7a9); */
+}
+.bi {
+  width: 50%;
+  height: 100%;
+  background: transparent;
+}
+.centerH {
+  display: flex;
+  justify-content: center;
+  background: transparent;
+}
+.centerV {
+  display: flex;
+  align-items: center;
+  background: transparent;
+}
+.hover:hover {
+  opacity: 0.7;
+}
+.smallText {
+  font-size: 13px;
+}
+@media screen and (max-width: 760px) {
+  .row {
+    width: 100%;
+    display: inline-block;
+  }
+  .lCol {
+    margin-top: 40%;
+  }
+  .bi {
+    width: 100%;
+    height: 25%;
+  }
+}
+@media screen and (max-width: 610px) {
+  .titleImg {
+    position: absolute;
+    left: 50;
+    margin-left: -164px;
+    width: 325px;
+    z-index: 5;
+    margin-top: 9vh;
+  }
 }
 
-.App-link {
-  color: #09d3ac;
+@media screen and (max-width: 310px) {
+  .titleImg {
+    position: absolute;
+    left: 50;
+    margin-left: -100px;
+    width: 200px;
+    z-index: 5;
+    margin-top: 9vh;
+  }
 }
