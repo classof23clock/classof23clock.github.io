@@ -145,9 +145,9 @@ class SceneAlt extends Component {
     }
   }
   animate() {
-    this.particle.rotation.z += 0.004;
+    this.particle.rotation.z -= 0.004;
 
-    this.skelet.rotation.x -= 0.0005;
+    // this.skelet.rotation.x -= 0.0005;
     this.skelet.rotation.z -= 0.002;
     var tanFOV = Math.tan(((Math.PI / 180) * this.camera.fov) / 2);
     var windowHeight = window.innerHeight;

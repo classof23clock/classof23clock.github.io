@@ -82,17 +82,17 @@ class Top extends React.Component {
         </div>
         <img className="titleImg" src={titleImg} alt="titleImg" />
         <div className="row fullHeight">
-          <div className=" tri centerH centerV">
+          <div className="rCol tri centerH centerV">
             <p className="numP">{this.state.rawDays}</p>
-            <p className="tileP">DAYS LEFT (RAW)</p>
+            <p className="titleP">DAYS LEFT (RAW)</p>
           </div>
           <div className=" tri centerH centerV">
             <p className="numP">{this.state.schoolDays}</p>
-            <p className="tileP">SCHOOL DAYS LEFT</p>
+            <p className="titleP">SCHOOL DAYS LEFT</p>
           </div>
-          <div className="lCol tri centerH centerV">
+          <div className=" tri centerH centerV">
             <p className="numP">{this.state.percentage}%</p>
-            <p className="tileP">PERCENTAGE COMPLETE</p>
+            <p className="titleP">PERCENTAGE COMPLETE</p>
           </div>
         </div>
         <div className="bottomRow centerH">
